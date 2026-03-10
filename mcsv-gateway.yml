@@ -1,0 +1,36 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: mcsv-gateway
+
+  cloud:
+    gateway:
+      routes:
+        - id: students
+          uri: lb://mcsv-student
+          predicates:
+            - Path=/api/v1/students/**
+          filters:
+            - StripPrefix=2
+        - id: courses
+          uri: lb://mcsv-course
+          predicates:
+            - Path=/api/v1/courses/**
+          filters:
+            - StripPrefix=2
+
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    reactor.netty: DEBUG
+    org.springframework.web: DEBUG
+    com.netflix.discovery: DEBUG
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+    fetch-registry: true
+    register-with-eureka: false
