@@ -5,17 +5,6 @@ spring:
     username: ${STUDENT_DB_USER}
     password: ${STUDENT_DB_PASSWORD}
 
-  cloud:
-    loadbalancer:
-      ribbon:
-        enabled: false
-      cache:
-        enabled: true
-      health-check:
-        initial-delay: 5s
-        interval: 5s
-        refetch-instances: true
-
   jpa:
     hibernate:
       ddl-auto: update
@@ -34,5 +23,6 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka
+
 
 
