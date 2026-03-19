@@ -6,9 +6,9 @@ spring:
   application:
     name: microservice-auth
   datasource:
-    url: jdbc:mysql://localhost:3306/auth-db?createDatabaseIfNotExist=true
-    username: root
-    password: mysqlronald
+    url: ${AUTH_DB_URL}
+    username: ${AUTH_DB_USER}
+    password: ${AUTH_DB_PASSWORD}
 
   jpa:
     hibernate:
@@ -21,6 +21,6 @@ eureka:
 
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka
-    #fetch-registry: true
-    #register-with-eureka: true
+      defaultZone: http://microservice-eureka:8761/eureka
+    fetch-registry: true
+    register-with-eureka: true
