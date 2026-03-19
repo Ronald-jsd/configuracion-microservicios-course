@@ -6,10 +6,21 @@ spring:
     name: mcsv-course
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/course-db
-    username: postgres
-    password: mysqlronald
-
+    url: ${COURSE_DB_URL}
+    username: ${COURSE_DB_USER}
+    password: ${COURSE_DB_PASSWORD}
+    
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    defer-datasource-initialization: false
+    
+  sql:
+    init:
+      mode: always
+      
   cloud:
     loadbalancer:
       ribbon:
@@ -21,23 +32,12 @@ spring:
         interval: 5s
         refetch-instances: true
 
-  jpa:
-    hibernate:
-      ddl-auto: update
-    database: postgresql
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
-    defer-datasource-initialization: false
-  sql:
-    init:
-      mode: always
-
 eureka:
   instance:
     instance-id: ${spring.application.name}:${random.uuid}
-    
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka
+      defaultZone: http://microservice-eureka:8761/eureka
     fetch-registry: true
     register-with-eureka: true
 
