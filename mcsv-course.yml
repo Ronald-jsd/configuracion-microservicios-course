@@ -6,9 +6,9 @@ spring:
     name: mcsv-course
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: ${COURSE_DB_URL}
-    username: ${COURSE_DB_USER}
-    password: ${COURSE_DB_PASSWORD}
+    url:  ${SPRING_DATASOURCE_URL}
+    username: ${SPRING_DATASOURCE_USERNAME}
+    password: ${SPRING_DATASOURCE_PASSWORD}
     
   jpa:
     hibernate:
